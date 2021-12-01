@@ -2,7 +2,7 @@ import getInput from '../get-input'
 
 const parseInput = (input: string) => input.split('\n').map((number) => +number)
 
-const countIncreases = (depths: number[]): number =>
+const countIncreases = (depths: number[]) =>
   depths.filter((depth, index) => index > 0 && depth > depths[index - 1]).length
 
 export const partOne = (input: string): number =>
@@ -13,7 +13,12 @@ export const partTwo = (input: string): number => {
   return countIncreases(
     new Array(depths.length - 2)
       .fill(0)
-      .map((_, i) => depths[i] + depths[i + 1] + depths[i + 2]),
+      .map((_, i) =>
+        [depths[i], depths[i + 1], depths[i + 2]].reduce(
+          (acc, cur) => acc + cur,
+          0,
+        ),
+      ),
   )
 }
 
