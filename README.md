@@ -13,7 +13,7 @@ Each solution is in a folder named by the day, matching the listings on Advent o
 ## Progress
 | AoC Day  | First Part | Second Part |
 |---|:---:|:---:|
-| [Day 1](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-01)| ✔ | - |
+| [Day 1](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-01)| ✔ | ✔ |
 | [Day 2](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-02)| - | - |
 | [Day 3](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-03)| - | - |
 | [Day 4](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-04)| - | - |

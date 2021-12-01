@@ -2,12 +2,20 @@ import getInput from '../get-input'
 
 const parseInput = (input: string) => input.split('\n').map((number) => +number)
 
-export const partOne = (input: string): number => {
-  const results = parseInput(input)
-  return results.filter((depth, index) => {
-    if (index === 0 || depth < results[index - 1]) return
-    return true
-  }).length
+const countIncreases = (depths: number[]): number =>
+  depths.filter((depth, index) => index > 0 && depth > depths[index - 1]).length
+
+export const partOne = (input: string): number =>
+  countIncreases(parseInput(input))
+
+export const partTwo = (input: string): number => {
+  const depths = parseInput(input)
+  return countIncreases(
+    new Array(depths.length - 2)
+      .fill(0)
+      .map((_, i) => depths[i] + depths[i + 1] + depths[i + 2]),
+  )
 }
 
 console.log(`Part 1: ${partOne(getInput())}`)
+console.log(`Part 2: ${partTwo(getInput())}`)
