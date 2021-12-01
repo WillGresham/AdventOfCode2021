@@ -1,5 +1,5 @@
 # Advent of Code 2021
-![Node.js CI](https://github.com/WillGresham/AdventOfCode2021/workflows/Node.js%20CI/badge.svg?branch=master)
+![Node.js CI](https://github.com/WillGresham/AdventOfCode2021/workflows/Node.js%20CI/badge.svg?branch=main)
 
 My solutions for the [2021 set of Advent of Code problems](https://adventofcode.com/2021/), presented in TypeScript
 
