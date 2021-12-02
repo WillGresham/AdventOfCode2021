@@ -1,5 +1,3 @@
-import getInput from '../get-input'
-
 const parseInput = (input: string) => input.split('\n').map((number) => +number)
 
 const countIncreases = (depths: number[]) =>
@@ -21,6 +19,3 @@ export const partTwo = (input: string): number => {
       ),
   )
 }
-
-console.log(`Part 1: ${partOne(getInput())}`)
-console.log(`Part 2: ${partTwo(getInput())}`)

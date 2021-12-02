@@ -9,7 +9,8 @@
     "format": "prettier -c src",
     "format:fix": "prettier --write src",
     "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint --fix src/**/*.ts"
+    "lint:fix": "eslint --fix src/**/*.ts",
+    "start": "ts-node src/index.ts"
   },
   "husky": {
     "hooks": {
