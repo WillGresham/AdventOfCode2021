@@ -1,6 +1,7 @@
 import { partOne, partTwo } from '.'
+import { loadInput } from '../utils'
 
-const input = 'forward 5\ndown 5\nforward 8\nup 3\ndown 8\nforward 2'
+const input = loadInput('.', 'testInput')
 
 it('should return 150 for partOne', () => expect(partOne(input)).toBe(150))
 
