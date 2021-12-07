@@ -1,62 +1,71 @@
-# Day 2: Dive!
+# Day 3: Binary Diagnostic
 
-### Part One
+## Part One
 
-Now, you need to figure out how to <span title="Tank, I need a pilot program for a B212 helicopter.">pilot this thing</span>.
+The submarine has been making some <span title="Turns out oceans are heavy.">odd creaking noises</span>, so you ask it to produce a diagnostic report just in case.
 
-It seems like the submarine can take a series of commands like `forward 1`, `down 2`, or `up 3`:
+The diagnostic report (your puzzle input) consists of a list of binary numbers which, when decoded properly, can tell you many useful things about the conditions of the submarine. The first parameter to check is the _power consumption_.
 
-- `forward X` increases the horizontal position by `X` units.
-- `down X` _increases_ the depth by `X` units.
-- `up X` _decreases_ the depth by `X` units.
+You need to use the binary numbers in the diagnostic report to generate two new binary numbers (called the _gamma rate_ and the _epsilon rate_). The power consumption can then be found by multiplying the gamma rate by the epsilon rate.
 
-Note that since you're on a submarine, `down` and `up` affect your _depth_, and so they have the opposite result of what you might expect.
+Each bit in the gamma rate can be determined by finding the _most common bit in the corresponding position_ of all numbers in the diagnostic report. For example, given the following diagnostic report:
 
-The submarine seems to already have a planned course (your puzzle input). You should probably figure out where it's going. For example:
+    00100
+    11110
+    10110
+    10111
+    10101
+    01111
+    00111
+    11100
+    10000
+    11001
+    00010
+    01010
 
-    forward 5
-    down 5
-    forward 8
-    up 3
-    down 8
-    forward 2
+Considering only the first bit of each number, there are five `0` bits and seven `1` bits. Since the most common bit is `1`, the first bit of the gamma rate is `1`.
 
-Your horizontal position and depth both start at `0`. The steps above would then modify them as follows:
+The most common second bit of the numbers in the diagnostic report is `0`, so the second bit of the gamma rate is `0`.
 
-- `forward 5` adds `5` to your horizontal position, a total of `5`.
-- `down 5` adds `5` to your depth, resulting in a value of `5`.
-- `forward 8` adds `8` to your horizontal position, a total of `13`.
-- `up 3` decreases your depth by `3`, resulting in a value of `2`.
-- `down 8` adds `8` to your depth, resulting in a value of `10`.
-- `forward 2` adds `2` to your horizontal position, a total of `15`.
+The most common value of the third, fourth, and fifth bits are `1`, `1`, and `0`, respectively, and so the final three bits of the gamma rate are `110`.
 
-After following these instructions, you would have a horizontal position of `15` and a depth of `10`. (Multiplying these together produces _`150`_.)
+So, the gamma rate is the binary number `10110`, or _`22`_ in decimal.
 
-Calculate the horizontal position and depth you would have after following the planned course. _What do you get if you multiply your final horizontal position by your final depth?_
+The epsilon rate is calculated in a similar way; rather than use the most common bit, the least common bit from each position is used. So, the epsilon rate is `01001`, or _`9`_ in decimal. Multiplying the gamma rate (`22`) by the epsilon rate (`9`) produces the power consumption, _`198`_.
 
-### Part Two
+Use the binary numbers in your diagnostic report to calculate the gamma rate and epsilon rate, then multiply them together. _What is the power consumption of the submarine?_ (Be sure to represent your answer in decimal, not binary.)
 
-Based on your calculations, the planned course doesn't seem to make any sense. You find the submarine manual and discover that the process is actually slightly more complicated.
+## Part Two
 
-In addition to horizontal position and depth, you'll also need to track a third value, _aim_, which also starts at `0`. The commands also mean something entirely different than you first thought:
+Next, you should verify the _life support rating_, which can be determined by multiplying the _oxygen generator rating_ by the _CO2 scrubber rating_.
 
-- `down X` _increases_ your aim by `X` units.
-- `up X` _decreases_ your aim by `X` units.
-- `forward X` does two things:
-  - It increases your horizontal position by `X` units.
-  - It increases your depth by your aim _multiplied by_ `X`.
+Both the oxygen generator rating and the CO2 scrubber rating are values that can be found in your diagnostic report - finding them is the tricky part. Both values are located using a similar process that involves filtering out values until only one remains. Before searching for either rating value, start with the full list of binary numbers from your diagnostic report and _consider just the first bit_ of those numbers. Then:
 
-Again note that since you're on a submarine, `down` and `up` do the opposite of what you might expect: "down" means aiming in the positive direction.
+- Keep only numbers selected by the _bit criteria_ for the type of rating value for which you are searching. Discard numbers which do not match the bit criteria.
+- If you only have one number left, stop; this is the rating value for which you are searching.
+- Otherwise, repeat the process, considering the next bit to the right.
 
-Now, the above example does something different:
+The _bit criteria_ depends on which type of rating value you want to find:
 
-- `forward 5` adds `5` to your horizontal position, a total of `5`. Because your aim is `0`, your depth does not change.
-- `down 5` adds `5` to your aim, resulting in a value of `5`.
-- `forward 8` adds `8` to your horizontal position, a total of `13`. Because your aim is `5`, your depth increases by `8*5=40`.
-- `up 3` decreases your aim by `3`, resulting in a value of `2`.
-- `down 8` adds `8` to your aim, resulting in a value of `10`.
-- `forward 2` adds `2` to your horizontal position, a total of `15`. Because your aim is `10`, your depth increases by `2*10=20` to a total of `60`.
+- To find _oxygen generator rating_, determine the _most common_ value (`0` or `1`) in the current bit position, and keep only numbers with that bit in that position. If `0` and `1` are equally common, keep values with a _`1`_ in the position being considered.
+- To find _CO2 scrubber rating_, determine the _least common_ value (`0` or `1`) in the current bit position, and keep only numbers with that bit in that position. If `0` and `1` are equally common, keep values with a _`0`_ in the position being considered.
 
-After following these new instructions, you would have a horizontal position of `15` and a depth of `60`. (Multiplying these produces _`900`_.)
+For example, to determine the _oxygen generator rating_ value using the same example diagnostic report from above:
 
-Using this new interpretation of the commands, calculate the horizontal position and depth you would have after following the planned course. _What do you get if you multiply your final horizontal position by your final depth?_
+- Start with all 12 numbers and consider only the first bit of each number. There are more `1` bits (7) than `0` bits (5), so keep only the 7 numbers with a `1` in the first position: `11110`, `10110`, `10111`, `10101`, `11100`, `10000`, and `11001`.
+- Then, consider the second bit of the 7 remaining numbers: there are more `0` bits (4) than `1` bits (3), so keep only the 4 numbers with a `0` in the second position: `10110`, `10111`, `10101`, and `10000`.
+- In the third position, three of the four numbers have a `1`, so keep those three: `10110`, `10111`, and `10101`.
+- In the fourth position, two of the three numbers have a `1`, so keep those two: `10110` and `10111`.
+- In the fifth position, there are an equal number of `0` bits and `1` bits (one each). So, to find the _oxygen generator rating_, keep the number with a `1` in that position: `10111`.
+- As there is only one number left, stop; the _oxygen generator rating_ is `10111`, or _`23`_ in decimal.
+
+Then, to determine the _CO2 scrubber rating_ value from the same example above:
+
+- Start again with all 12 numbers and consider only the first bit of each number. There are fewer `0` bits (5) than `1` bits (7), so keep only the 5 numbers with a `0` in the first position: `00100`, `01111`, `00111`, `00010`, and `01010`.
+- Then, consider the second bit of the 5 remaining numbers: there are fewer `1` bits (2) than `0` bits (3), so keep only the 2 numbers with a `1` in the second position: `01111` and `01010`.
+- In the third position, there are an equal number of `0` bits and `1` bits (one each). So, to find the _CO2 scrubber rating_, keep the number with a `0` in that position: `01010`.
+- As there is only one number left, stop; the _CO2 scrubber rating_ is `01010`, or _`10`_ in decimal.
+
+Finally, to find the life support rating, multiply the oxygen generator rating (`23`) by the CO2 scrubber rating (`10`) to get _`230`_.
+
+Use the binary numbers in your diagnostic report to calculate the oxygen generator rating and CO2 scrubber rating, then multiply them together. _What is the life support rating of the submarine?_ (Be sure to represent your answer in decimal, not binary.)
