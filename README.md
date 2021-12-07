@@ -7,7 +7,7 @@ Each solution is in a folder named by the day, matching the listings on Advent o
 
 ## Installation and running
 - Install dependencies with `npm ci`
-- Run individual solutions with `npx ts-node src/day-X`
+- Run individual solutions with `npm start <day-number>`
 - Run tests with `npm test`
 
 ## Progress
