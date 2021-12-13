@@ -3,6 +3,6 @@ import { loadInput } from '../utils'
 
 const input = loadInput('.', 'testInput')
 
-expect('partOne should return 0', partOne(input)).toBe(0)
+it('partOne should return 0', () => expect(partOne(input)).toBe(0))
 
-expect('partTwo should return 0', partTwo(input)).toBe(0)
+it('partTwo should return 0', () => expect(partTwo(input)).toBe(0))
