@@ -19,8 +19,8 @@ Each solution is in a folder named by the day, matching the listings on Advent o
 | [Day 4](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-04)| ✔ | ✔ |
 | [Day 5](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-05)| ✔ | ✔ |
 | [Day 6](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-06)| ✔ | ✔ |
-| [Day 7](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-07)| - | - |
-| [Day 8](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-08)| - | - |
+| [Day 7](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-07)| ✔ | ✔ |
+| [Day 8](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-08)| ✔ | ✔ |
 | [Day 9](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-09)| - | - |
 | [Day 10](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-10)| - | - |
 | [Day 11](https://github.com/WillGresham/AdventOfCode2021/tree/master/src/day-11)| - | - |
